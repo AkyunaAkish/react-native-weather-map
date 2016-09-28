@@ -15,8 +15,8 @@ export default function(state = initialState, action) {
     return {
       currentRegionWeather: {
         name: action.payload.data.name,
-        temperature: kelvinToF(action.payload.data.main.temp),
-        description: _.capitalize(action.payload.data.weather[0].description) || 'No Description'
+        temperature: action.payload.data.main ? kelvinToF(action.payload.data.main.temp) : 'No Temperature Available',
+        description: action.payload.data.weather ? _.capitalize(action.payload.data.weather[0].description) : 'No description available'
       }
     }
     break;
